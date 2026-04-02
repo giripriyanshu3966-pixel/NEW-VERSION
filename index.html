@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Next Creatives</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#" class="logo">Next<span>Creatives</span></a>
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#creator">Creators</a></li>
+      <li><a href="#brand">Brands</a></li>
+    </ul>
+    <a href="#creator" class="nav-cta">Get Started</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">India's Premier Influencer Platform</p>
+      <h1>Where Brands<br><em>Meet Creators</em></h1>
+      <p class="hero-sub">Paid collaborations, UGC campaigns & influencer marketing — all in one place.</p>
+      <div class="hero-btns">
+        <a href="#creator" class="btn btn-gold">Join as Creator</a>
+        <a href="#brand" class="btn btn-outline">Work With Us</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Trusted Platform</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">100+</span>
+          <span class="stat-label">Creators Already Paid</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">100+</span>
+          <span class="stat-label">Creators Working With Us</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="float-card fc1">🎬 UGC Video</div>
+      <div class="float-card fc2">📈 +340% Reach</div>
+      <div class="float-card fc3">✅ Campaign Live</div>
+      <div class="blob"></div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-label">WHAT WE DO</div>
+    <h2>Our <em>Services</em></h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📣</div>
+        <h3>Influencer Marketing</h3>
+        <p>Connect your brand with vetted influencers across Instagram, YouTube & more for authentic reach.</p>
+      </div>
+      <div class="service-card featured">
+        <div class="featured-badge">Most Popular</div>
+        <div class="service-icon">🎥</div>
+        <h3>UGC Content</h3>
+        <p>High-quality product photos and videos created by real creators — ready to use across all channels.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>Campaign Management</h3>
+        <p>End-to-end campaign strategy, briefing, execution and reporting — we handle everything.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREATOR FORM -->
+  <section id="creator">
+    <div class="form-wrapper">
+      <div class="form-info">
+        <div class="section-label">FOR CREATORS</div>
+        <h2>Start Earning<br><em>With Us</em></h2>
+        <p>Submit your profile and our team will match you with brand collaborations that fit your niche and audience.</p>
+        <ul class="form-perks">
+          <li>✦ Paid collaborations every month</li>
+          <li>✦ Work with top Indian & global brands</li>
+          <li>✦ Free products + cash deals</li>
+          <li>✦ Dedicated creator manager</li>
+        </ul>
+      </div>
+      <div class="form-box">
+        <h3>Creator Application</h3>
+        <div class="field-group">
+          <div class="field">
+            <label>Full Name</label>
+            <input id="name" type="text" placeholder="Your name" />
+          </div>
+          <div class="field">
+            <label>Instagram Username</label>
+            <input id="instagram" type="text" placeholder="@username" />
+          </div>
+        </div>
+        <div class="field-group">
+          <div class="field">
+            <label>Followers Count</label>
+            <input id="followers" type="number" placeholder="e.g. 25000" />
+          </div>
+          <div class="field">
+            <label>Niche</label>
+            <input id="niche" type="text" placeholder="Fashion, Tech, Food..." />
+          </div>
+        </div>
+        <div class="field-group">
+          <div class="field">
+            <label>Email Address</label>
+            <input id="email" type="email" placeholder="you@email.com" />
+          </div>
+          <div class="field">
+            <label>Phone Number</label>
+            <input id="phone" type="tel" placeholder="+91 XXXXX XXXXX" />
+          </div>
+        </div>
+
+        <!-- VIDEO UPLOAD — OPTIONAL -->
+        <div class="field video-field">
+          <label>Portfolio / Sample Reel <span class="optional">— Optional</span></label>
+          <div class="video-upload-zone" id="videoZone" onclick="document.getElementById('video').click()">
+            <div class="upload-icon">🎬</div>
+            <p class="upload-title">Click to upload a video</p>
+            <p class="upload-hint">MP4, MOV, AVI up to 10MB &nbsp;•&nbsp; Optional but recommended!</p>
+            <div class="upload-preview" id="videoPreview"></div>
+          </div>
+          <input type="file" id="video" accept="video/*" style="display:none" onchange="previewVideo(this)" />
+        </div>
+
+        <button class="btn btn-gold btn-full" onclick="submitCreator()">
+          <span id="creator-btn-text">Submit Application →</span>
+          <span id="creator-loader" style="display:none">Submitting…</span>
+        </button>
+        <p class="form-note">We review all applications within 48 hours.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRAND FORM -->
+  <section id="brand">
+    <div class="form-wrapper reverse">
+      <div class="form-box">
+        <h3>Brand Enquiry</h3>
+        <div class="field">
+          <label>Brand Name</label>
+          <input id="brandname" type="text" placeholder="Your brand name" />
+        </div>
+        <div class="field">
+          <label>Type of Brand</label>
+          <input id="typebrand" type="text" placeholder="e.g. Fashion, FMCG, Tech" />
+        </div>
+        <div class="field">
+          <label>Business Email</label>
+          <input id="brandemail" type="email" placeholder="brand@company.com" />
+        </div>
+        <div class="field">
+          <label>Phone Number</label>
+          <input id="brandphone" type="tel" placeholder="+91 XXXXX XXXXX" />
+        </div>
+        <button class="btn btn-dark btn-full" onclick="submitBrand()">
+          <span id="brand-btn-text">Send Enquiry →</span>
+          <span id="brand-loader" style="display:none">Sending…</span>
+        </button>
+        <p class="form-note">Our partnerships team will reach out within 24 hours.</p>
+      </div>
+      <div class="form-info">
+        <div class="section-label">FOR BRANDS</div>
+        <h2>Grow With<br><em>Creators</em></h2>
+        <p>Tap into our curated network of creators to run authentic campaigns that actually convert.</p>
+        <ul class="form-perks">
+          <li>✦ Access 100+ vetted creators</li>
+          <li>✦ Managed campaigns, zero hassle</li>
+          <li>✦ Performance tracking & reports</li>
+          <li>✦ UGC content rights included</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <a href="#" class="logo">Next<span>Creatives</span></a>
+      <p>© 2026 Next Creatives. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
