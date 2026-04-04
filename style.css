@@ -1,3 +1,4 @@
+```css
 /* ============================================
    NEXT CREATIVES — style.css
    ============================================ */
@@ -50,13 +51,40 @@ nav.scrolled {
   background: rgba(10, 10, 10, 0.97);
 }
 .logo {
-  font-family: var(--ff-display);
-  font-size: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--ff-body);
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--white);
   text-decoration: none;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.22);
 }
-.logo span { color: var(--gold); }
+.logo::before {
+  content: "";
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  flex: 0 0 42px;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0) 28%),
+    radial-gradient(circle at 50% 52%, transparent 0 10px, rgba(255,255,255,0.96) 10.4px 16px, transparent 16.4px),
+    linear-gradient(132deg, transparent 0 20%, rgba(255,255,255,0.98) 20% 34%, transparent 34% 48%, rgba(255,255,255,0.98) 48% 63%, transparent 63%),
+    linear-gradient(140deg, #ff7d73 0%, #ff4f9a 28%, #9148ff 62%, #22d5dd 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.32),
+    0 10px 24px rgba(113, 66, 255, 0.28);
+}
+.logo span {
+  background: linear-gradient(90deg, #ff5c93 0%, #914dff 38%, #24d4d9 72%, #2f7dff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
 nav ul { display: flex; list-style: none; gap: 40px; }
 nav ul li a {
   color: var(--muted);
@@ -178,9 +206,9 @@ nav ul li a:hover { color: var(--white); }
   font-size: 0.87rem; font-weight: 600;
   color: var(--white); white-space: nowrap;
 }
-.fc1 { top: 18%; left: -4%;    animation: float1 5s ease-in-out infinite; }
+.fc1 { top: 18%; left: -4%; animation: float1 5s ease-in-out infinite; }
 .fc2 { bottom: 28%; right: -2%; animation: float2 6.5s ease-in-out infinite 1s; }
-.fc3 { bottom: 8%;  left: 8%;   animation: float3 4.5s ease-in-out infinite 0.6s; }
+.fc3 { bottom: 8%; left: 8%; animation: float3 4.5s ease-in-out infinite 0.6s; }
 
 /* ---- SERVICES ---- */
 #services { padding: 110px 64px; text-align: center; background: var(--dark); }
@@ -225,7 +253,7 @@ nav ul li a:hover { color: var(--white); }
 
 /* ---- FORM SECTIONS ---- */
 #creator { padding: 110px 64px; background: var(--black); }
-#brand   { padding: 110px 64px; background: var(--dark); }
+#brand { padding: 110px 64px; background: var(--dark); }
 .form-wrapper {
   display: flex; gap: 80px;
   align-items: flex-start;
@@ -283,26 +311,6 @@ input:focus {
   background: rgba(212,168,83,0.04);
   box-shadow: 0 0 0 3px rgba(212,168,83,0.1);
 }
-
-/* Video upload */
-.video-field { margin-bottom: 26px; }
-.video-upload-zone {
-  border: 2px dashed rgba(212,168,83,0.3);
-  border-radius: 14px; padding: 36px 24px;
-  text-align: center; cursor: pointer;
-  transition: var(--transition);
-  background: rgba(212,168,83,0.02);
-}
-.video-upload-zone:hover { border-color: var(--gold); background: rgba(212,168,83,0.06); }
-.video-upload-zone.has-file {
-  border-color: #4caf50;
-  background: rgba(76,175,80,0.06);
-  border-style: solid;
-}
-.upload-icon { font-size: 2.2rem; margin-bottom: 10px; }
-.upload-title { font-size: 0.93rem; font-weight: 600; color: var(--white); margin-bottom: 6px; }
-.upload-hint  { font-size: 0.78rem; color: var(--muted); font-weight: 300; }
-.upload-preview { margin-top: 14px; font-size: 0.84rem; font-weight: 600; color: #4caf50; }
 .form-note { text-align: center; font-size: 0.77rem; color: var(--muted); margin-top: 12px; font-weight: 300; }
 
 /* ---- FOOTER ---- */
@@ -333,24 +341,24 @@ footer p { font-size: 0.83rem; color: var(--muted); font-weight: 300; }
 /* ---- ANIMATIONS ---- */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(32px); }
-  to   { opacity: 1; transform: translateY(0); }
+  to { opacity: 1; transform: translateY(0); }
 }
 @keyframes float1 {
   0%, 100% { transform: translateY(0) rotate(-1deg); }
-  50%       { transform: translateY(-13px) rotate(1deg); }
+  50% { transform: translateY(-13px) rotate(1deg); }
 }
 @keyframes float2 {
   0%, 100% { transform: translateY(0) rotate(1deg); }
-  50%       { transform: translateY(-17px) rotate(-1deg); }
+  50% { transform: translateY(-17px) rotate(-1deg); }
 }
 @keyframes float3 {
   0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-9px); }
+  50% { transform: translateY(-9px); }
 }
 @keyframes blobPulse {
   0%, 100% { border-radius: 60% 40% 50% 70% / 50% 60% 40% 60%; transform: scale(1); }
-  33%       { border-radius: 40% 60% 70% 30% / 60% 40% 60% 40%; transform: scale(1.04); }
-  66%       { border-radius: 70% 30% 40% 60% / 40% 70% 50% 50%; transform: scale(0.97); }
+  33% { border-radius: 40% 60% 70% 30% / 60% 40% 60% 40%; transform: scale(1.04); }
+  66% { border-radius: 70% 30% 40% 60% / 40% 70% 50% 50%; transform: scale(0.97); }
 }
 
 /* ---- RESPONSIVE ---- */
@@ -370,4 +378,15 @@ footer p { font-size: 0.83rem; color: var(--muted); font-weight: 300; }
   .form-box { padding: 32px 22px; }
   footer { padding: 24px; }
   .footer-inner { flex-direction: column; text-align: center; }
+  .logo {
+    font-size: 1.45rem;
+    gap: 10px;
+  }
+  .logo::before {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+    border-radius: 12px;
+  }
 }
+```
