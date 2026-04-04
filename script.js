@@ -235,3 +235,46 @@ async function submitBrand() {
     setLoading("brand-btn-text", "brand-loader", false);
   }
 }
+  try {
+    var result = await postToSheet(data);
+    if (result.status && result.status !== "success") {
+      throw new Error(result.message || "Unable to submit creator form.");
+    }
+
+    resetCreatorForm();
+    showToast("Application submitted successfully!", "success");
+  } catch (error) {
+    console.error(error);
+    showToast(error.message || "Submission failed. Please try again.");
+  } finally {
+    setLoading("creator-btn-text", "creator-loader", false);
+  }
+  try {
+    var result = await postToSheet(data);
+    if (result.status && result.status !== "success") {
+      throw new Error(result.message || "Unable to submit brand form.");
+    }
+
+    resetBrandForm();
+    showToast("Enquiry sent! We will be in touch soon.", "success");
+  } catch (error) {
+    console.error(error);
+    showToast(error.message || "Submission failed. Please try again.");
+  } finally {
+    setLoading("brand-btn-text", "brand-loader", false);
+  }
+  try {
+    var result = await postToSheet(data);
+    if (result.status && result.status !== "success") {
+      throw new Error(result.message || "Unable to submit brand form.");
+    }
+
+    resetBrandForm();
+    showToast("Enquiry sent! We will be in touch soon.", "success");
+  } catch (error) {
+    console.error(error);
+    showToast(error.message || "Submission failed. Please try again.");
+  } finally {
+    setLoading("brand-btn-text", "brand-loader", false);
+  }
+  
