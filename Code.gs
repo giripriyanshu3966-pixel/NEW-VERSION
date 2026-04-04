@@ -99,15 +99,19 @@ function getOrCreateSheet(spreadsheet, name, headers) {
 }
 
 function uploadVideoToDrive(base64Data, filename) {
-  const bytes = Utilities.base64Decode(base64Data);
-  const blob = Utilities.newBlob(bytes, getMimeType(filename), filename);
-  const folder = DRIVE_FOLDER_ID
-    ? DriveApp.getFolderById(DRIVE_FOLDER_ID)
-    : DriveApp.getRootFolder();
+  try {
+    const bytes = Utilities.base64Decode(base64Data);
+    const blob = Utilities.newBlob(bytes, getMimeType(filename), filename);
+    const folder = DRIVE_FOLDER_ID
+      ? DriveApp.getFolderById(DRIVE_FOLDER_ID)
+      : DriveApp.getRootFolder();
 
-  const file = folder.createFile(blob);
-  file.setName(filename);
-  return file.getUrl();
+    const file = folder.createFile(blob);
+    file.setName(filename);
+    return file.getUrl();
+  } catch (error) {
+    throw new Error("Video upload failed: " + error.message);
+  }
 }
 
 function getMimeType(filename) {
