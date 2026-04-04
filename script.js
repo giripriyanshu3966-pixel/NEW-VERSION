@@ -119,6 +119,7 @@ function submitCreator() {
   ];
 
   if (!validate(fields)) return;
+
   sendCreatorData();
 }
 
