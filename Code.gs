@@ -42,15 +42,8 @@ function saveCreatorLead(spreadsheet, payload) {
     "Followers Count",
     "Niche",
     "Email Address",
-    "Phone Number",
-    "Video File Name",
-    "Video Drive URL"
+    "Phone Number"
   ]);
-
-  let videoUrl = "";
-  if (payload.video && payload.filename) {
-    videoUrl = uploadVideoToDrive(payload.video, payload.filename);
-  }
 
   sheet.appendRow([
     payload.submittedAt || new Date().toISOString(),
@@ -59,9 +52,7 @@ function saveCreatorLead(spreadsheet, payload) {
     payload.followers || "",
     payload.niche || "",
     payload.email || "",
-    payload.phone || "",
-    payload.filename || "",
-    videoUrl
+    payload.phone || ""
   ]);
 }
 
@@ -96,31 +87,6 @@ function getOrCreateSheet(spreadsheet, name, headers) {
   }
 
   return sheet;
-}
-
-function uploadVideoToDrive(base64Data, filename) {
-  try {
-    const bytes = Utilities.base64Decode(base64Data);
-    const blob = Utilities.newBlob(bytes, getMimeType(filename), filename);
-    const folder = DRIVE_FOLDER_ID
-      ? DriveApp.getFolderById(DRIVE_FOLDER_ID)
-      : DriveApp.getRootFolder();
-
-    const file = folder.createFile(blob);
-    file.setName(filename);
-    return file.getUrl();
-  } catch (error) {
-    throw new Error("Video upload failed: " + error.message);
-  }
-}
-
-function getMimeType(filename) {
-  const extension = (filename.split(".").pop() || "").toLowerCase();
-
-  if (extension === "mov") return "video/quicktime";
-  if (extension === "avi") return "video/x-msvideo";
-  if (extension === "webm") return "video/webm";
-  return "video/mp4";
 }
 
 function jsonResponse(payload) {
