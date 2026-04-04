@@ -15,22 +15,6 @@ window.addEventListener("scroll", function () {
   }
 });
 
-// ---- VIDEO PREVIEW ----
-function previewVideo(input) {
-  var zone = document.getElementById("videoZone");
-  var preview = document.getElementById("videoPreview");
-  var file = input.files[0];
-
-  if (file) {
-    zone.classList.add("has-file");
-    preview.textContent =
-      "Selected: " + file.name + " (" + (file.size / 1024 / 1024).toFixed(1) + " MB)";
-  } else {
-    zone.classList.remove("has-file");
-    preview.textContent = "";
-  }
-}
-
 // ---- TOAST ----
 function showToast(msg, type) {
   var old = document.getElementById("toast");
@@ -113,9 +97,6 @@ function resetCreatorForm() {
   ["name", "instagram", "followers", "niche", "email", "phone"].forEach(function (id) {
     document.getElementById(id).value = "";
   });
-  document.getElementById("video").value = "";
-  document.getElementById("videoZone").classList.remove("has-file");
-  document.getElementById("videoPreview").textContent = "";
 }
 
 function resetBrandForm() {
@@ -138,33 +119,10 @@ function submitCreator() {
   ];
 
   if (!validate(fields)) return;
-
-  var file = document.getElementById("video").files[0];
-
-  if (!file) {
-    sendCreatorData("", "");
-    return;
-  }
-
-  if (file.size > 10 * 1024 * 1024) {
-    showToast("Video must be under 10MB");
-    return;
-  }
-
-  setLoading("creator-btn-text", "creator-loader", true);
-
-  var reader = new FileReader();
-  reader.onload = function () {
-    sendCreatorData(reader.result.split(",")[1], file.name);
-  };
-  reader.onerror = function () {
-    setLoading("creator-btn-text", "creator-loader", false);
-    showToast("Could not read video. Please try again.");
-  };
-  reader.readAsDataURL(file);
+  sendCreatorData();
 }
 
-async function sendCreatorData(base64, filename) {
+async function sendCreatorData() {
   setLoading("creator-btn-text", "creator-loader", true);
 
   var data = {
@@ -175,9 +133,7 @@ async function sendCreatorData(base64, filename) {
     followers: document.getElementById("followers").value.trim(),
     niche: document.getElementById("niche").value.trim(),
     email: document.getElementById("email").value.trim(),
-    phone: document.getElementById("phone").value.trim(),
-    video: base64,
-    filename: filename
+    phone: document.getElementById("phone").value.trim()
   };
 
   try {
